@@ -26,7 +26,7 @@
 
 <script setup >
   import { ref, onMounted } from 'vue'
-  const API_URL = 'http://localhost:3000/posts'
+  const API_URL = '/posts'
   const title = ref('')
   const body = ref('')
   const post_id = ref(0)

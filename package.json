@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-production": "vite build && scp -r ./dist/* deploy@134.209.231.213:/home/deploy/test_random_users/current/public"
   },
   "dependencies": {
     "vue": "^3.2.45"
