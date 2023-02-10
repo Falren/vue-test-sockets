@@ -1,0 +1,36 @@
+name: Continuous integration
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install SSH key to Server
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: github-actions
+          known_hosts: ${{ secrets.SSH_HOST }}
+          config: |
+            host ${{ secrets.SSH_HOST }}
+              IdentityFile ~/.ssh/github-actions
+              IdentitiesOnly yes
+              ForwardAgent yes
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }}
+      - name: Add SSH
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/github-actions
+      - uses: actions/setup-node@master
+      - name: Installing project dependencies
+      - run: npm install
+      - name: Deploy to production
+        run: |
+          npm run build
+          npm run clean-remote-assetes
+          npm run deploy
