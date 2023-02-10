@@ -27,7 +27,7 @@ jobs:
           ssh-add ~/.ssh/github-actions
       - uses: actions/setup-node@master
       - name: Installing project dependencies
-      - run: npm install
+        run: npm install
       - name: Deploy to production
         run: |
           npm run build
