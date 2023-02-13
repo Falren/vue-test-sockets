@@ -32,5 +32,5 @@ jobs:
       - name: Deploy to production
         run: |
           npm run build
-          npm run clean-remote-assetes
+          npm run clean-remote-assets
           npm run deploy
