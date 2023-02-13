@@ -1,4 +1,4 @@
-name: Continuous integration
+name: Deploy to remote
 on:
   push:
     branches: [main]
@@ -25,7 +25,7 @@ jobs:
       - name: Add SSH
         run: |
           eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/github-actions
+          ssh-add ~/.ssh/github-actions | tee -a ~/.ssh/known_hosts
       - uses: actions/setup-node@master
       - name: Installing project dependencies
         run: npm install
