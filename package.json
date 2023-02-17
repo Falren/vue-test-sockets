@@ -9,15 +9,18 @@
     "build": "vite build",
     "clean-remote-assets": "ssh deploy@134.209.231.213 'rm -rf /home/deploy/test_random_users/current/public/assets'",
     "deploy": "scp -r ./dist/* deploy@134.209.231.213:/home/deploy/test_random_users/current/public",
-    "lint": "eslint . --ext .ts --ext .vue",
-    "lint:fix": "eslint --ext .ts --ext .vue --fix"
+    "lint": "eslint . --ext .vue",
+    "lint:fix": "eslint  --ext .vue --fix"
   },
   "dependencies": {
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "prettier": "^2.8.4",
     "vue": "^3.2.45"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "eslint": "^8.34.0",
+    "eslint-plugin-only-error": "^1.0.2",
     "eslint-plugin-vue": "^9.9.0",
     "vite": "^4.0.0"
   }
